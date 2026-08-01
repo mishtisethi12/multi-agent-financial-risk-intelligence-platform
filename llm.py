@@ -1,6 +1,6 @@
 from google import genai
-from dotenv import load_dotenv
-import os
+import streamlit as st
+
 
 from server import (
     get_portfolio_value,
@@ -10,12 +10,10 @@ from server import (
     get_latest_news,
     get_recommendation
 )
-
-load_dotenv()
-
 client = genai.Client(
-    api_key=os.getenv("GEMINI_API_KEY")
+    api_key=st.secrets["GEMINI_API_KEY"]
 )
+
 
 
 def ask_gemini(question):
