@@ -1,81 +1,188 @@
 import streamlit as st
-from PIL import Image
+import sys
+import os
+
+# ---------------------------------------
+# Add project root to Python path
+# ---------------------------------------
+
+sys.path.append(
+    os.path.dirname(
+        os.path.dirname(
+            os.path.abspath(__file__)
+        )
+    )
+)
+
+from utils.finance import (
+    analyze_portfolio,
+    calculate_var,
+    calculate_sharpe
+)
+
+from components.sidebar import render_sidebar
+from components.dashboard import render_dashboard
+from components.portfolio import render_portfolio
+from components.advisor import render_advisor
+
+# ---------------------------------------
+# PAGE CONFIG
+# ---------------------------------------
 
 st.set_page_config(
-    page_title="Financial Risk Dashboard",
+    page_title="Financial Risk Intelligence Platform",
     page_icon="📈",
     layout="wide"
 )
 
-# Title
-st.title("📈 Financial Risk Dashboard")
-st.markdown("### AI-Powered Portfolio Analytics using MCP")
+# ---------------------------------------
+# CSS
+# ---------------------------------------
 
-# Metrics Row
-col1, col2, col3 = st.columns(3)
+st.markdown("""
+<style>
 
-with col1:
-    st.metric("Portfolio Value", "$98,052.13")
+/* App Background */
+.stApp{
+    background: #0E1117;
+}
 
-with col2:
-    st.metric("Sharpe Ratio", "0.13")
+/* Main Heading */
+h1{
+    color:#4EA8FF !important;
+    font-weight:800;
+}
 
-with col3:
-    st.metric("Value at Risk", "$2,532.27")
+h2,h3{
+    color:#E8EEF7 !important;
+}
 
-st.divider()
+/* Metric Cards */
+[data-testid="stMetric"]{
+    background:#1A1F2E;
+    border:1px solid #2E6BE6;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0px 4px 15px rgba(0,0,0,0.35);
+}
 
-# Sentiment and Recommendation
-col4, col5 = st.columns(2)
+/* Metric Label */
+[data-testid="stMetricLabel"]{
+    color:#9DB5D8 !important;
+    font-size:16px;
+    font-weight:600;
+}
 
-with col4:
-    st.subheader("Market Sentiment")
-    st.success("POSITIVE")
+/* Metric Value */
+[data-testid="stMetricValue"]{
+    color:#FFFFFF !important;
+    font-size:28px;
+    font-weight:700;
+}
 
-with col5:
-    st.subheader("Recommendation")
-    st.info(
-        "Hold current positions and continue monitoring market conditions."
+/* Buttons */
+.stButton>button{
+    background:#2563EB;
+    color:white;
+    border:none;
+    border-radius:12px;
+    height:3em;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.stButton>button:hover{
+    background:#1D4ED8;
+    color:white;
+}
+
+/* Text Area */
+textarea{
+    border-radius:12px !important;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"]{
+    background:#151A28;
+}
+
+/* Sidebar Text */
+section[data-testid="stSidebar"] *{
+    color:white !important;
+}
+
+/* Alerts */
+[data-testid="stAlert"]{
+    border-radius:12px;
+}
+
+/* Tables */
+[data-testid="stDataFrame"]{
+    border-radius:15px;
+    overflow:hidden;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# ---------------------------------------
+# LIVE DATA
+# ---------------------------------------
+
+total_value, stock_values = analyze_portfolio()
+
+var, volatility = calculate_var(total_value)
+
+sharpe = calculate_sharpe(volatility)
+
+# ---------------------------------------
+# SIDEBAR
+# ---------------------------------------
+
+render_sidebar(stock_values)
+
+# ---------------------------------------
+# TABS
+# ---------------------------------------
+
+dashboard_tab, portfolio_tab, advisor_tab = st.tabs(
+    [
+        " Dashboard",
+        " Portfolio",
+        "🤖 AI Advisor"
+    ]
+)
+
+# ---------------------------------------
+# DASHBOARD
+# ---------------------------------------
+
+with dashboard_tab:
+
+    render_dashboard(
+        total_value,
+        sharpe,
+        var,
+        stock_values
     )
 
-st.divider()
+# ---------------------------------------
+# PORTFOLIO
+# ---------------------------------------
 
-# Latest News
-st.subheader("Latest News")
+with portfolio_tab:
 
-news = [
-    "Tesla misses on earnings, as free cash flow turns negative.",
-    "Tesla releases Q2 2026 financial results.",
-    "Alphabet beats Wall Street expectations.",
-    "Big Tech earnings continue to drive market movement."
-]
+    render_portfolio()
 
-for item in news:
-    st.write(f"- {item}")
+# ---------------------------------------
+# AI ADVISOR
+# ---------------------------------------
 
-st.divider()
+with advisor_tab:
 
-# Charts
-st.subheader("Generated Charts")
+    render_advisor()
+    st.divider()
 
-st.image("Charts/portfolio_allocation.png",
-         caption="Portfolio Allocation")
-
-st.image("Charts/sector_allocation.png",
-         caption="Sector Allocation")
-
-st.image("Charts/daily_returns.png",
-         caption="Daily Returns")
-
-st.divider()
-
-# MCP Section
-st.subheader("MCP Server Status")
-
-st.success("Financial Risk MCP Server Running Successfully")
-
-# Footer
-st.markdown("---")
-st.markdown(
-    "Built using Python, Streamlit, yFinance, FastMCP, Pandas, and Matplotlib."
+st.caption(
+    "Built with Python • FastMCP • Google Gemini • Streamlit • Yahoo Finance • Pandas • TextBlob"
 )
