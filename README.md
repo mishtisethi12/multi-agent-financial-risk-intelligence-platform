@@ -1,12 +1,70 @@
 # Multi-Agent Financial Risk Intelligence Platform
 
-## Overview
+# 📈 Multi-Agent Financial Risk Intelligence Platform
 
-The Multi-Agent Financial Risk Intelligence Platform is an AI-powered financial analytics system designed to provide portfolio insights, risk assessment, market sentiment analysis, and investment recommendations. The platform leverages real-time financial data, MCP (Model Context Protocol), and multiple specialized agents to simulate an intelligent financial assistant.
-
-The system combines quantitative risk metrics such as Value at Risk (VaR) and Sharpe Ratio with qualitative insights from real-time financial news and sentiment analysis to deliver actionable recommendations.
+An AI-powered financial risk analytics platform that combines **Multi-Agent Systems**, **FastMCP**, **Google Gemini**, **Finnhub API**, and **Streamlit** to provide intelligent portfolio analysis, risk assessment, market sentiment analysis, and AI-driven investment recommendations.
 
 ---
+
+## 🚀 Live Demo
+
+🔗 **Streamlit App:** *(Add your deployment link here after deployment)*
+
+Example:
+
+https://your-app-name.streamlit.app
+
+---
+
+## ✨ Features
+
+- 📊 Live Portfolio Valuation
+- 📈 Portfolio Allocation Analysis
+- 🏦 Sector Allocation Analysis
+- ⚡ Live Stock Prices using Finnhub API
+- 📉 Value at Risk (VaR)
+- 📊 Sharpe Ratio
+- 📰 Live Financial News
+- 😊 Market Sentiment Analysis
+- 🤖 AI Financial Advisor (Google Gemini)
+- 🔌 FastMCP Financial Server
+- 📋 CSV Report Generation
+- 📊 Interactive Streamlit Dashboard
+- ☁️ Cloud Deployment
+
+---
+
+## 🖼️ Dashboard Preview
+
+> Add screenshots after uploading them.
+
+### Dashboard
+
+```
+images/dashboard.png
+```
+
+### AI Financial Advisor
+
+```
+images/advisor.png
+```
+
+### Portfolio Analytics
+
+```
+images/portfolio.png
+```
+
+---
+
+## 📌 Project Overview
+
+The **Multi-Agent Financial Risk Intelligence Platform** is an end-to-end AI-powered financial analytics application designed to help investors analyze portfolio performance, evaluate financial risk, and receive intelligent investment insights.
+
+The platform integrates **live market data from Finnhub**, **financial news**, **market sentiment analysis**, **portfolio risk metrics**, and an **AI Financial Advisor powered by Google Gemini**.
+
+The application follows a **multi-agent architecture**, where specialized agents perform independent financial analysis before combining their outputs into actionable recommendations presented through an interactive Streamlit dashboard.
 
 ## Features
 
@@ -26,67 +84,105 @@ The system combines quantitative risk metrics such as Value at Risk (VaR) and Sh
 
 ---
 
-## Project Architecture
+## 🏗️ System Architecture
 
 ```text
-                    User
-                      |
-                      v
-            Streamlit Dashboard
-                      |
-                      v
-       Multi-Agent Financial System
-                      |
-    ------------------------------------------------
-    |              |              |               |
-Portfolio      Risk Agent     News Agent    MCP Server
- Agent             |               |              |
-    |               |               |              |
-    |           VaR Agent      Sentiment Agent     |
-    |               |               |              |
-    ------------------------------------------------
-                      |
-                      v
-            Recommendation Agent
-                      |
-                      v
-               Final Risk Report
+                           User
+                             │
+                             ▼
+                  Streamlit Dashboard
+                             │
+     ┌───────────────────────┼────────────────────────┐
+     │                       │                        │
+     ▼                       ▼                        ▼
+Portfolio Agent        Risk Analysis Agent      AI Advisor Agent
+     │                       │                        │
+     │                       │                        │
+     ▼                       ▼                        ▼
+Live Portfolio         VaR + Sharpe Ratio       Google Gemini
+     │                       │                        │
+     └───────────────┬───────────────┬────────────────┘
+                     ▼               ▼
+               Financial MCP Server
+                     │
+         ┌───────────┼────────────┐
+         │           │            │
+         ▼           ▼            ▼
+ Live Prices     Market News   Recommendations
+ (Finnhub API)   RSS Feed      Financial Tools
+                     │
+                     ▼
+             Final Financial Insights
 ```
 
 ---
 
-## Multi-Agent Workflow
+## 🤖 Multi-Agent Workflow
 
-```text
-Portfolio CSV
-      |
-      v
-Portfolio Analysis
-      |
-      v
-Volatility Analysis
-      |
-      v
-Value at Risk (VaR)
-      |
-      v
-Sharpe Ratio
-      |
-      v
-News Agent
-      |
-      v
-Sentiment Agent
-      |
-      v
-Recommendation Agent
-      |
-      v
-CSV Report + Dashboard
-```
+The application follows a modular multi-agent architecture where each agent is responsible for a specific financial task.
+
+### 📊 Portfolio Agent
+
+- Reads portfolio holdings
+- Calculates live portfolio value
+- Computes allocation percentages
 
 ---
 
+### 📉 Risk Analysis Agent
+
+Calculates:
+
+- Portfolio Volatility
+- Value at Risk (95%)
+- Sharpe Ratio
+
+---
+
+### 📰 News Agent
+
+- Fetches latest financial news
+- Monitors market events
+- Provides current market context
+
+---
+
+### 😊 Sentiment Agent
+
+Uses **TextBlob** to classify news headlines into:
+
+- Positive
+- Neutral
+- Negative
+
+---
+
+### 🤖 AI Advisor Agent
+
+Powered by **Google Gemini**.
+
+Combines:
+
+- Portfolio Value
+- Sharpe Ratio
+- Value at Risk
+- Market Sentiment
+- Latest News
+
+to generate intelligent investment recommendations.
+
+---
+
+### 🔌 FastMCP Server
+
+The MCP server exposes reusable financial tools including:
+
+- Portfolio Value
+- Sharpe Ratio
+- Value at Risk
+- Market Sentiment
+- Latest News
+- Investment Recommendation
 ## MCP Tools
 
 The Financial Risk MCP Server exposes the following tools:
@@ -100,21 +196,60 @@ The Financial Risk MCP Server exposes the following tools:
 
 ---
 
-## Tech Stack
+## 🛠️ Technology Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Language | Python |
-| Data Processing | Pandas, NumPy |
-| Financial Data | yFinance |
-| NLP | TextBlob |
-| Visualization | Matplotlib |
+| Category | Technology |
+|-----------|------------|
+| Programming Language | Python 3.13 |
 | Dashboard | Streamlit |
-| MCP | FastMCP |
+| AI Model | Google Gemini 2.5 Flash |
+| MCP Framework | FastMCP |
+| Market Data API | Finnhub API |
+| Data Processing | Pandas, NumPy |
+| Data Visualization | Matplotlib |
+| NLP | TextBlob |
 | News Source | Google News RSS |
-| Reporting | CSV |
+| Environment Management | python-dotenv |
+| HTTP Requests | Requests |
+| Version Control | Git & GitHub |
+| Deployment | Streamlit Community Cloud |
 
 ---
+
+## 📂 Project Structure
+
+```text
+multi-agent-financial-risk-intelligence-platform/
+│
+├── dashboard/
+│   ├── app.py
+│   └── components/
+│       ├── advisor.py
+│       ├── dashboard.py
+│       ├── portfolio.py
+│       ├── sidebar.py
+│       └── __init__.py
+│
+├── data/
+│   └── portfolio.csv
+│
+├── Charts/
+│   ├── portfolio_allocation.png
+│   ├── sector_allocation.png
+│   └── daily_returns.png
+│
+├── utils/
+│   └── finance.py
+│
+├── reports/
+│
+├── llm.py
+├── server.py
+├── main.py
+├── requirements.txt
+├── README.md
+└── .env
+```
 
 ## Financial Metrics Implemented
 
@@ -173,18 +308,39 @@ multi-agent-financial-risk-intelligence-platform/
 ```
 
 ---
+## ⚙️ Installation
 
-## Installation
-
-Clone the repository:
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/multi-agent-financial-risk-intelligence-platform.git
+git clone https://github.com/mishtisethi12/multi-agent-financial-risk-intelligence-platform.git
 
 cd multi-agent-financial-risk-intelligence-platform
 ```
 
-Install dependencies:
+---
+
+### 2. Create a Virtual Environment
+
+#### Windows
+
+```bash
+python -m venv venv
+
+venv\Scripts\activate
+```
+
+#### macOS/Linux
+
+```bash
+python3 -m venv venv
+
+source venv/bin/activate
+```
+
+---
+
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -192,27 +348,120 @@ pip install -r requirements.txt
 
 ---
 
-## Running the Project
+## 🔑 Environment Variables
 
-### Run Portfolio Analytics
+Create a `.env` file in the project root.
+
+```env
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+
+FINNHUB_API_KEY=YOUR_FINNHUB_API_KEY
+```
+
+> Never commit your `.env` file to GitHub.
+
+---
+
+## ▶️ Running the Project
+
+### Run the Financial Analytics Engine
 
 ```bash
 python main.py
 ```
 
-### Run MCP Server
+---
+
+### Run the FastMCP Server
 
 ```bash
 python server.py
 ```
 
-### Run Streamlit Dashboard
+---
+
+### Launch the Streamlit Dashboard
 
 ```bash
 streamlit run dashboard/app.py
 ```
 
 ---
+
+## ☁️ Deployment
+
+The application is deployed using **Streamlit Community Cloud**.
+
+Deployment includes:
+
+- Live Streamlit Dashboard
+- Google Gemini Integration
+- Finnhub API Integration
+- FastMCP Financial Server
+- AI Financial Advisor
+
+After deployment, update the Live Demo section with your Streamlit URL.
+
+---
+
+## 📊 Financial Metrics
+
+### 📉 Value at Risk (VaR)
+
+Value at Risk estimates the maximum expected portfolio loss over a specified period at a given confidence level.
+
+**Confidence Level:** 95%
+
+---
+
+### 📈 Sharpe Ratio
+
+The Sharpe Ratio measures the risk-adjusted return of the investment portfolio.
+
+Higher values indicate better performance relative to risk.
+
+---
+
+### 📊 Portfolio Allocation
+
+Calculates the percentage contribution of each stock to the total portfolio value.
+
+---
+
+### 🏦 Sector Allocation
+
+Groups investments by sector to evaluate diversification.
+
+---
+
+### 😊 Market Sentiment
+
+Financial news headlines are analyzed using **TextBlob** and classified as:
+
+- Positive
+- Neutral
+- Negative
+
+---
+
+### 🤖 AI Financial Advisor
+
+Google Gemini combines:
+
+- Portfolio Value
+- VaR
+- Sharpe Ratio
+- Market Sentiment
+- Financial News
+
+to generate personalized investment insights.
+
+
+
+
+
+
+
 
 ## Sample Output
 
@@ -224,6 +473,110 @@ streamlit run dashboard/app.py
 | Sentiment | Positive |
 
 ---
+---
+
+# 📸 Screenshots
+
+> Replace these placeholders with actual screenshots after uploading them to the repository.
+
+## Dashboard
+
+```
+images/dashboard.png
+```
+
+---
+
+## Portfolio Analytics
+
+```
+images/portfolio.png
+```
+
+---
+
+## AI Financial Advisor
+
+```
+images/advisor.png
+```
+
+---
+
+## Risk Analytics
+
+```
+images/risk.png
+```
+
+---
+
+# 🚀 Future Enhancements
+
+- Multi-Portfolio Support
+- User Authentication
+- Historical Portfolio Performance
+- Monte Carlo Risk Simulation
+- Portfolio Optimization using Modern Portfolio Theory
+- AI-powered Portfolio Rebalancing
+- Real-time Market Alerts
+- Interactive Stock Comparison Dashboard
+- PDF Financial Report Generation
+- Docker Deployment
+- CI/CD Pipeline using GitHub Actions
+
+---
+
+# 💡 Learning Outcomes
+
+This project demonstrates practical experience with:
+
+- Multi-Agent System Design
+- Financial Risk Analytics
+- FastMCP Tool Development
+- Google Gemini Integration
+- Prompt Engineering
+- REST API Integration
+- Streamlit Dashboard Development
+- Portfolio Risk Assessment
+- Git & GitHub Workflow
+- Cloud Deployment
+
+---
+
+# 👩‍💻 Author
+
+**Mishti Sethi**
+
+AI/ML Undergraduate
+
+Interested in:
+
+- Artificial Intelligence
+- Financial Analytics
+- Multi-Agent Systems
+- Data Analytics
+- Machine Learning
+
+GitHub:
+
+https://github.com/mishtisethi12
+
+LinkedIn:
+
+*(Add your LinkedIn profile here)*
+
+---
+
+# ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
 
 ## Key Achievements
 
